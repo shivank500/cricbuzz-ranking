@@ -1,0 +1,5 @@
+package com.cricbuzz.entity;
+
+public class CricbuzzEntity {
+
+}

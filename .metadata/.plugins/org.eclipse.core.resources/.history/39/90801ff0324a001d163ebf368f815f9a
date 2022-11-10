@@ -1,0 +1,5 @@
+package com.cricbuzz.repository;
+
+public interface CricbuzzRepository {
+
+}

@@ -1,0 +1,52 @@
+package com.cricbuzz.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cricbuzz.dto.CricbuzzDTO;
+import com.cricbuzz.entity.CricbuzzEntity;
+import com.cricbuzz.repository.CricbuzzRepository;
+
+@Service 
+public class CricbuzzService {
+	
+	@Autowired
+	CricbuzzRepository crepo;
+	
+	@Autowired 
+	ModelMapper mapper;
+	
+	public String add(CricbuzzDTO dto) {
+		CricbuzzEntity entity=mapper.map(dto,CricbuzzEntity.class);
+		crepo.save(entity);
+		
+		return "Data added";
+	}
+	
+	public String modify(CricbuzzDTO dto) {
+		Optional<CricbuzzEntity> entity= crepo.findByNameAndDob(dto.getName(),dto.getDob());
+		CricbuzzEntity ee=new CricbuzzEntity();
+		ee.setBattingStyle(entity.get().getBattingStyle());
+		ee.setBirthPlace(entity.get().getBirthPlace());
+		ee.setBowlingStyle(entity.get().getBowlingStyle());
+		ee.setDob(entity.get().getDob());
+		ee.setHeight(entity.get().getHeight());
+		ee.setName(entity.get().getName());
+		ee.setNickname(entity.get().getNickname());
+		ee.setRole(entity.get().getRole());
+		crepo.save(ee);
+		return "Data modified";
+	}
+	
+	public List<CricbuzzEntity> getall(){
+		List<CricbuzzEntity> entity=crepo.findAll();
+		return entity;
+		
+	}
+	
+
+}

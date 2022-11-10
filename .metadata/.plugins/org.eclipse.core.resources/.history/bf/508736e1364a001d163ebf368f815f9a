@@ -1,0 +1,29 @@
+package com.cricbuzz.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cricbuzz.dto.CricbuzzDTO;
+import com.cricbuzz.entity.CricbuzzEntity;
+import com.cricbuzz.repository.CricbuzzRepository;
+
+@Service 
+public class CricbuzzService {
+	
+	@Autowired
+	CricbuzzRepository crepo;
+	
+	@Autowired 
+	ModelMapper mapper;
+	
+	public String add(CricbuzzDTO dto) {
+		CricbuzzEntity entity=mapper.map(dto,CricbuzzEntity.class);
+		crepo.save(entity);
+		
+		return "Data added";
+	}
+	
+	
+
+}

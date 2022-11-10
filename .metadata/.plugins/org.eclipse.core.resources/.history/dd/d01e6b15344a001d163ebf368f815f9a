@@ -1,0 +1,24 @@
+package com.cricbuzz.entity;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class CricbuzzEntity {
+	
+	@Id
+	@GeneratedValue
+	private Integer id;
+	private Date dob;
+	private String birthPlace;
+	private String nickname;
+	private Integer height;
+	private String role;
+	private String battingStyle;
+	private String bowlingStyle;
+	
+
+}
